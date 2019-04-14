@@ -8,9 +8,9 @@ import store from '@/store'
 
 // 创建 axios 实例
 const service = axios.create({
-  //baseURL: process.env.BASE_URL, // api 的 BASE_API，在 config 文件夹中根据不同环境可配置不同地址
+  // baseURL: process.env.BASE_URL, // api 的 BASE_API，在 config 文件夹中根据不同环境可配置不同地址
   timeout: 10000, // 请求超时时间
-  withCredentials:true
+  withCredentials: true
 })
 // NProgress Configuration
 NProgress.configure({
@@ -23,10 +23,10 @@ service.interceptors.request.use(config => {
   if (getToken() && !isToken) {
     config.headers['Authorization'] = 'Bearer ' + getToken() // 让每个请求携带token--['Authorization']为自定义key 请根据实际情况自行修改
   }
-  //headers中配置serialize为true开启序列化
+  // headers中配置serialize为true开启序列化
   if (config.methods === 'post' && config.headers.serialize) {
-    config.data = serialize(config.data);
-    delete config.data.serialize;
+    config.data = serialize(config.data)
+    delete config.data.serialize
   }
   return config
 }, error => {
@@ -37,7 +37,7 @@ service.interceptors.request.use(config => {
 service.interceptors.response.use(
   // 成功
   response => {
-    NProgress.done();
+    NProgress.done()
     // console.log('Response From: ' + response.config.url);
     // console.log(response);
     // 可根据自定义 status 判断状态，自定义 status 最好放在响应返回的 data 对象中
@@ -70,11 +70,11 @@ service.interceptors.response.use(
     return Promise.reject(res)
   },
   error => {
-    NProgress.done();
+    NProgress.done()
     // 失败
     // console.log('Request Error From: ' + error.config.url);
     // console.error(error); // for debug
-    let res = error.response.data;
+    let res = error.response.data
     if (String(res.code) === '401') {
       Message({
         message: '身份认证已失效，请重新登录',
@@ -83,9 +83,9 @@ service.interceptors.response.use(
         onClose: () => {
           store.dispatch('FedLogOut').then(() => {
             location.reload() // 为了重新实例化vue-router对象 避免bug
-          });
+          })
         }
-      });
+      })
     } else {
       Message({
         message: error.message,

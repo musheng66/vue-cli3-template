@@ -4,17 +4,17 @@
  * @param {String|null} cFormat
  * @returns {String}
  */
-export function parseTime(time, cFormat) {
+export function parseTime (time, cFormat) {
   if (arguments.length === 0) {
-    return null;
+    return null
   }
-  const format = cFormat || '{y}-{m}-{d} {h}:{i}:{s}';
-  let date;
+  const format = cFormat || '{y}-{m}-{d} {h}:{i}:{s}'
+  let date
   if (typeof time === 'object') {
-    date = time;
+    date = time
   } else {
-    if (('' + time).length === 10) time = parseInt(time) * 1000;
-    date = new Date(time);
+    if (('' + time).length === 10) time = parseInt(time) * 1000
+    date = new Date(time)
   }
   const formatObj = {
     y: date.getFullYear(),
@@ -24,15 +24,15 @@ export function parseTime(time, cFormat) {
     i: date.getMinutes(),
     s: date.getSeconds(),
     a: date.getDay()
-  };
+  }
   return format.replace(/{(y|m|d|h|i|s|a)+}/g, (result, key) => {
-    let value = formatObj[key];
-    if (key === 'a') return ['一', '二', '三', '四', '五', '六', '日'][value - 1];
+    let value = formatObj[key]
+    if (key === 'a') return ['一', '二', '三', '四', '五', '六', '日'][value - 1]
     if (result.length > 0 && value < 10) {
-      value = '0' + value;
+      value = '0' + value
     }
-    return value || 0;
-  });
+    return value || 0
+  })
 }
 
 /**
@@ -41,59 +41,59 @@ export function parseTime(time, cFormat) {
  * @param {Object|null} option
  * @returns {String}
  */
-export function formatTime(time, option) {
-  time = +time * 1000;
-  const d = new Date(time);
-  const now = Date.now();
-  const diff = (now - d) / 1000;
+export function formatTime (time, option) {
+  time = +time * 1000
+  const d = new Date(time)
+  const now = Date.now()
+  const diff = (now - d) / 1000
   if (diff < 30) {
-    return '刚刚';
+    return '刚刚'
   } else if (diff < 3600) { // less 1 hour
-    return Math.ceil(diff / 60) + '分钟前';
+    return Math.ceil(diff / 60) + '分钟前'
   } else if (diff < 3600 * 24) {
-    return Math.ceil(diff / 3600) + '小时前';
+    return Math.ceil(diff / 3600) + '小时前'
   } else if (diff < 3600 * 24 * 2) {
-    return '1天前';
+    return '1天前'
   }
   if (option) {
-    return parseTime(time, option);
+    return parseTime(time, option)
   } else {
-    return d.getMonth() + 1 + '月' + d.getDate() + '日' + d.getHours() + '时' + d.getMinutes() + '分';
+    return d.getMonth() + 1 + '月' + d.getDate() + '日' + d.getHours() + '时' + d.getMinutes() + '分'
   }
 }
 
-/**
- * @description 获取字节数组长度
- * @param {Array} val
- * @returns {number}
- */
-export function getByteLen(val) {
-  let len = 0;
-  for (let i = 0; i < val.length; i++) {
-    if (val[i].match(/[^\x00-\xff]/ig) != null) {
-      len += 1;
-    } else { len += 0.5; }
-  }
-  return Math.floor(len);
-}
+// /**
+//  * @description 获取字节数组长度
+//  * @param {Array} val
+//  * @returns {number}
+//  */
+// export function getByteLen (val) {
+//   let len = 0
+//   for (let i = 0; i < val.length; i++) {
+//     if (val[i].match(/[^\x00-\xff]/ig) != null) {
+//       len += 1
+//     } else { len += 0.5 }
+//   }
+//   return Math.floor(len)
+// }
 
 /**
  * @description 提取 url 或 params 中的请求参数，以 Json 格式返回
  * @param {String}arg
  * @returns {Object} Json 格式请求参数
  */
-export function requestParamsToJSON(arg) {
-  if (!arg || String(arg) === '') return null;
-  if (typeof arg === 'object') return arg;
-  const argArr = arg.split('?');
+export function requestParamsToJSON (arg) {
+  if (!arg || String(arg) === '') return null
+  if (typeof arg === 'object') return arg
+  const argArr = arg.split('?')
   // 判断是 url 或者是 params
   if (argArr && argArr.length > 1) {
-    arg = argArr[1];
+    arg = argArr[1]
     if (!arg) {
-      return null;
+      return null
     }
   }
-  return JSON.parse('{"' + decodeURIComponent(arg).replace(/"/g, '\\"').replace(/&/g, '","').replace(/=/g, '":"') + '"}');
+  return JSON.parse('{"' + decodeURIComponent(arg).replace(/"/g, '\\"').replace(/&/g, '","').replace(/=/g, '":"') + '"}')
 }
 
 /**
@@ -101,10 +101,10 @@ export function requestParamsToJSON(arg) {
  * @param val 要转换的 HTML
  * @returns {(string | null) | string}
  */
-export function html2Text(val) {
-  const div = document.createElement('div');
-  div.innerHTML = val;
-  return div.textContent || div.innerText;
+export function html2Text (val) {
+  const div = document.createElement('div')
+  div.innerHTML = val
+  return div.textContent || div.innerText
 }
 
 /**
@@ -113,24 +113,24 @@ export function html2Text(val) {
  * @param {Object} source 被合并对象
  * @returns {*}
  */
-export function objectMerge(target, source) {
+export function objectMerge (target, source) {
   if (typeof target !== 'object') {
-    target = {};
+    target = {}
   }
   if (Array.isArray(source)) {
-    return source.slice();
+    return source.slice()
   }
   for (const property in source) {
     if (source.hasOwnProperty(property)) {
-      const sourceProperty = source[property];
+      const sourceProperty = source[property]
       if (typeof sourceProperty === 'object') {
-        target[property] = objectMerge(target[property], sourceProperty);
-        continue;
+        target[property] = objectMerge(target[property], sourceProperty)
+        continue
       }
-      target[property] = sourceProperty;
+      target[property] = sourceProperty
     }
   }
-  return target;
+  return target
 }
 
 /**
@@ -139,16 +139,16 @@ export function objectMerge(target, source) {
  * @param {Number} to 滚动的距离
  * @param {Number} duration 滚动持续时间
  */
-export function scrollTo(element, to, duration) {
-  if (duration <= 0) return;
-  const difference = to - element.scrollTop;
-  const perTick = difference / duration * 10;
+export function scrollTo (element, to, duration) {
+  if (duration <= 0) return
+  const difference = to - element.scrollTop
+  const perTick = difference / duration * 10
   setTimeout(() => {
-    console.log(new Date());
-    element.scrollTop = element.scrollTop + perTick;
-    if (element.scrollTop === to) return;
-    scrollTo(element, to, duration - 10);
-  }, 10);
+    console.log(new Date())
+    element.scrollTop = element.scrollTop + perTick
+    if (element.scrollTop === to) return
+    scrollTo(element, to, duration - 10)
+  }, 10)
 }
 
 /**
@@ -156,18 +156,18 @@ export function scrollTo(element, to, duration) {
  * @param {*} element 目标 HTML 元素
  * @param {String} className 类名
  */
-export function toggleClass(element, className) {
+export function toggleClass (element, className) {
   if (!element || !className) {
-    return;
+    return
   }
-  let classString = element.className;
-  const nameIndex = classString.indexOf(className);
+  let classString = element.className
+  const nameIndex = classString.indexOf(className)
   if (nameIndex === -1) {
-    classString += '' + className;
+    classString += '' + className
   } else {
-    classString = classString.substr(0, nameIndex) + classString.substr(nameIndex + className.length);
+    classString = classString.substr(0, nameIndex) + classString.substr(nameIndex + className.length)
   }
-  element.className = classString;
+  element.className = classString
 }
 
 /**
@@ -177,43 +177,43 @@ export function toggleClass(element, className) {
 export const pickerOptions = [
   {
     text: '今天',
-    onClick(picker) {
-      const end = new Date();
-      const start = new Date(new Date().toDateString());
-      end.setTime(start.getTime());
-      picker.$emit('pick', [start, end]);
+    onClick (picker) {
+      const end = new Date()
+      const start = new Date(new Date().toDateString())
+      end.setTime(start.getTime())
+      picker.$emit('pick', [start, end])
     }
   }, {
     text: '最近一周',
-    onClick(picker) {
-      const end = new Date(new Date().toDateString());
-      const start = new Date();
-      start.setTime(end.getTime() - 3600 * 1000 * 24 * 7);
-      picker.$emit('pick', [start, end]);
+    onClick (picker) {
+      const end = new Date(new Date().toDateString())
+      const start = new Date()
+      start.setTime(end.getTime() - 3600 * 1000 * 24 * 7)
+      picker.$emit('pick', [start, end])
     }
   }, {
     text: '最近一个月',
-    onClick(picker) {
-      const end = new Date(new Date().toDateString());
-      const start = new Date();
-      start.setTime(start.getTime() - 3600 * 1000 * 24 * 30);
-      picker.$emit('pick', [start, end]);
+    onClick (picker) {
+      const end = new Date(new Date().toDateString())
+      const start = new Date()
+      start.setTime(start.getTime() - 3600 * 1000 * 24 * 30)
+      picker.$emit('pick', [start, end])
     }
   }, {
     text: '最近三个月',
-    onClick(picker) {
-      const end = new Date(new Date().toDateString());
-      const start = new Date();
-      start.setTime(start.getTime() - 3600 * 1000 * 24 * 90);
-      picker.$emit('pick', [start, end]);
+    onClick (picker) {
+      const end = new Date(new Date().toDateString())
+      const start = new Date()
+      start.setTime(start.getTime() - 3600 * 1000 * 24 * 90)
+      picker.$emit('pick', [start, end])
     }
-  }];
+  }]
 
-export function getTime(type) {
+export function getTime (type) {
   if (type === 'start') {
-    return new Date().getTime() - 3600 * 1000 * 24 * 90;
+    return new Date().getTime() - 3600 * 1000 * 24 * 90
   } else {
-    return new Date(new Date().toDateString());
+    return new Date(new Date().toDateString())
   }
 }
 
@@ -224,35 +224,35 @@ export function getTime(type) {
  * @param immediate
  * @returns {function(...[*]=): *}
  */
-export function debounce(func, wait, immediate) {
-  let timeout, args, context, timestamp, result;
-  const later = function() {
+export function debounce (func, wait, immediate) {
+  let timeout, args, context, timestamp, result
+  const later = function () {
     // 据上一次触发时间间隔
-    const last = +new Date() - timestamp;
+    const last = +new Date() - timestamp
     // 上次被包装函数被调用时间间隔 last 小于设定时间间隔 wait
     if (last < wait && last > 0) {
-      timeout = setTimeout(later, wait - last);
+      timeout = setTimeout(later, wait - last)
     } else {
-      timeout = null;
+      timeout = null
       // 如果设定为 immediate === true，因为开始边界已经调用过了此处无需调用
       if (!immediate) {
-        result = func.apply(context, args);
-        if (!timeout) context = args = null;
+        result = func.apply(context, args)
+        if (!timeout) context = args = null
       }
     }
-  };
-  return function(...args) {
-    context = this;
-    timestamp = +new Date();
-    const callNow = immediate && !timeout;
+  }
+  return function (...args) {
+    context = this
+    timestamp = +new Date()
+    const callNow = immediate && !timeout
     // 如果延时不存在，重新设定延时
-    if (!timeout) timeout = setTimeout(later, wait);
+    if (!timeout) timeout = setTimeout(later, wait)
     if (callNow) {
-      result = func.apply(context, args);
-      context = args = null;
+      result = func.apply(context, args)
+      context = args = null
     }
-    return result;
-  };
+    return result
+  }
 }
 
 /**
@@ -260,22 +260,22 @@ export function debounce(func, wait, immediate) {
  * @param {Object} source 原对象
  * @returns {*} 新对象
  */
-export function deepClone(source) {
+export function deepClone (source) {
   if (!source && typeof source !== 'object') {
-    throw new Error('error arguments', 'shallowClone');
+    throw new Error('error arguments', 'shallowClone')
   }
-  const targetObj = source.constructor === Array ? [] : {};
+  const targetObj = source.constructor === Array ? [] : {}
   for (const keys in source) {
     if (source.hasOwnProperty(keys)) {
       if (source[keys] && typeof source[keys] === 'object') {
-        targetObj[keys] = source[keys].constructor === Array ? [] : {};
-        targetObj[keys] = deepClone(source[keys]);
+        targetObj[keys] = source[keys].constructor === Array ? [] : {}
+        targetObj[keys] = deepClone(source[keys])
       } else {
-        targetObj[keys] = source[keys];
+        targetObj[keys] = source[keys]
       }
     }
   }
-  return targetObj;
+  return targetObj
 }
 
 /**
@@ -283,20 +283,20 @@ export function deepClone(source) {
  * @param {String} xmlString
  * @returns {*}
  */
-export function loadXML(xmlString) {
-  let xmlDoc = null;
+export function loadXML (xmlString) {
+  let xmlDoc = null
   // 判断浏览器的类型，用 window.DOMParser 判断是否是非 IE 浏览器
   if (!window.DOMParser && window.ActiveXObject) {
     // 支持IE浏览器
-    const xmlDomVersions = ['MSXML.2.DOMDocument.6.0', 'MSXML.2.DOMDocument.3.0', 'Microsoft.XMLDOM'];
-    for (let i=0; i<xmlDomVersions.length; i++) {
+    const xmlDomVersions = ['MSXML.2.DOMDocument.6.0', 'MSXML.2.DOMDocument.3.0', 'Microsoft.XMLDOM']
+    for (let i = 0; i < xmlDomVersions.length; i++) {
       try {
-        xmlDoc = new window.ActiveXObject(xmlDomVersions[i]);
-        xmlDoc.async = false;
-        xmlDoc.loadXML(xmlString); // loadXML 方法载入 xml 字符串
-        break;
+        xmlDoc = new window.ActiveXObject(xmlDomVersions[i])
+        xmlDoc.async = false
+        xmlDoc.loadXML(xmlString) // loadXML 方法载入 xml 字符串
+        break
       } catch (e) {
-        console.log(e);
+        console.log(e)
       }
     }
   } else if (window.DOMParser && document.implementation && document.implementation.createDocument) {
@@ -307,18 +307,16 @@ export function loadXML(xmlString) {
        * parseFromString(text, contentType) 参数 text:要解析的 XML 标记 参数contentType文本的内容类型
        * 可能是 "text/xml" 、"application/xml" 或 "application/xhtml+xml" 中的一个。注意，不支持 "text/html"。
        */
-      const domParser = new DOMParser();
-      xmlDoc = domParser.parseFromString(xmlString, 'text/xml');
+      const domParser = new DOMParser()
+      xmlDoc = domParser.parseFromString(xmlString, 'text/xml')
     } catch (e) {
-      console.log(e);
+      console.log(e)
     }
   } else {
-    return null;
+    return null
   }
-  return xmlDoc;
+  return xmlDoc
 }
-
-import { validatenull } from './validate'
 // 表单序列化
 export const serialize = data => {
   let list = []
@@ -346,31 +344,7 @@ export const getObjType = obj => {
   }
   return map[toString.call(obj)]
 }
-/**
- * 对象深拷贝
- */
-export const deepClone = data => {
-  var type = getObjType(data)
-  var obj
-  if (type === 'array') {
-    obj = []
-  } else if (type === 'object') {
-    obj = {}
-  } else {
-    // 不再具有下一层次
-    return data
-  }
-  if (type === 'array') {
-    for (var i = 0, len = data.length; i < len; i++) {
-      obj.push(deepClone(data[i]))
-    }
-  } else if (type === 'object') {
-    for (var key in data) {
-      obj[key] = deepClone(data[key])
-    }
-  }
-  return obj
-}
+
 /**
  * 判断路由是否相等
  */
@@ -416,40 +390,6 @@ export const setTheme = (name) => {
 }
 
 /**
- *加密处理
- */
-export const encryption = (params) => {
-  let {
-    data,
-    type,
-    param,
-    key
-  } = params
-  const result = JSON.parse(JSON.stringify(data))
-  if (type === 'Base64') {
-    param.forEach(ele => {
-      result[ele] = btoa(result[ele])
-    })
-  } else {
-    param.forEach(ele => {
-      var data = result[ele]
-      key = CryptoJS.enc.Latin1.parse(key)
-      var iv = key
-      // 加密
-      var encrypted = CryptoJS.AES.encrypt(
-        data,
-        key, {
-          iv: iv,
-          mode: CryptoJS.mode.CBC,
-          padding: CryptoJS.pad.ZeroPadding
-        })
-      result[ele] = encrypted.toString()
-    })
-  }
-  return result
-}
-
-/**
  * 浏览器判断是否全屏
  */
 export const fullscreenToggel = () => {
@@ -466,10 +406,10 @@ export const fullscreenToggel = () => {
 export const fullscreenElement = () => {
   var fullscreenEle = document.fullscreenElement ||
     document.mozFullScreenElement ||
-    document.webkitFullscreenElement;
+    document.webkitFullscreenElement
   // 注意：要在用户授权全屏后才能获取全屏的元素，否则 fullscreenEle为null
-  console.log("全屏元素："+fullscreenEle);
-  return fullscreenEle;
+  console.log('全屏元素：' + fullscreenEle)
+  return fullscreenEle
 }
 
 /**
@@ -523,15 +463,14 @@ export const exitFullScreen = () => {
 /**
  * 递归寻找子类的父类
  */
-
 export const findParent = (menu, id) => {
   for (let i = 0; i < menu.length; i++) {
-    if (menu[i].children.length != 0) {
+    if (menu[i].children.length !== 0) {
       for (let j = 0; j < menu[i].children.length; j++) {
-        if (menu[i].children[j].id == id) {
+        if (menu[i].children[j].id === id) {
           return menu[i]
         } else {
-          if (menu[i].children[j].children.length != 0) {
+          if (menu[i].children[j].children.length !== 0) {
             return findParent(menu[i].children[j].children, id)
           }
         }
@@ -539,14 +478,10 @@ export const findParent = (menu, id) => {
     }
   }
 }
-/**
- * 判断2个对象属性和值是否相等
- */
 
 /**
  * 动态插入css
  */
-
 export const loadStyle = url => {
   const link = document.createElement('link')
   link.type = 'text/css'
@@ -555,6 +490,7 @@ export const loadStyle = url => {
   const head = document.getElementsByTagName('head')[0]
   head.appendChild(link)
 }
+
 /**
  * 判断路由是否相等
  */
@@ -567,46 +503,19 @@ export const isObjectValueEqual = (a, b) => {
   })
   return result
 }
-/**
- * 根据字典的value显示label
- */
-export const findByvalue = (dic, value) => {
-  let result = ''
-  if (validatenull(dic)) return value
-  if (typeof (value) === 'string' || typeof (value) === 'number' || typeof (value) === 'boolean') {
-    let index = 0
-    index = findArray(dic, value)
-    if (index != -1) {
-      result = dic[index].label
-    } else {
-      result = value
-    }
-  } else if (value instanceof Array) {
-    result = []
-    let index = 0
-    value.forEach(ele => {
-      index = findArray(dic, ele)
-      if (index != -1) {
-        result.push(dic[index].label)
-      } else {
-        result.push(value)
-      }
-    })
-    result = result.toString()
-  }
-  return result
-}
+
 /**
  * 根据字典的value查找对应的index
  */
 export const findArray = (dic, value) => {
   for (let i = 0; i < dic.length; i++) {
-    if (dic[i].value == value) {
+    if (dic[i].value === value) {
       return i
     }
   }
   return -1
 }
+
 /**
  * 生成随机len位数字
  */
@@ -616,6 +525,7 @@ export const randomLenNum = (len, date) => {
   if (date) random = random + Date.now()
   return random
 }
+
 /**
  * 打开小窗口
  */

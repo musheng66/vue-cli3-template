@@ -25,14 +25,15 @@ router.beforeEach((to, from, next) => {
       next({ path: '/' })
       NProgress.done() // 若当前页是主页，跳转时不会进行路由转换，所以手动处理
     } else {
-      // 由于只有一个管理员角色，无需每次刷新验证权限，现暂时去掉拉取 user_info 的逻辑，使用 sessionStorage 存放 user_info，此处直接根据角色生成菜单。
+      // 由于只有一个管理员角色，无需每次刷新验证权限，现暂时去掉拉取 user_info 的逻辑，使用 sessionStorage 存放 user_info，此处直接根据角色生成菜单
       if (store.getters.roles.length === 0) { // 判断当前用户是否已拉取完 user_info 信息
         store.dispatch('GetUserInfo').then(res => { // 拉取 user_info
-          const roles = res.data.roles // roles 必须是数组，如: ['editor','develop']
-          store.dispatch('GenerateRoutes', { roles }).then(() => { // 根据roles权限生成可访问的路由表
-            router.addRoutes(store.getters.addRouters) // 动态添加可访问路由表
-            next({ ...to, replace: true }) // hack 方法 确保 addRoutes 已完成，set the replace: true so the navigation will not leave a history record
-          })
+          // const roles = res.data.roles // roles 必须是数组，如: ['editor','develop']
+          // store.dispatch('GenerateRoutes', { roles }).then(() => { // 根据roles权限生成可访问的路由表
+          //   router.addRoutes(store.getters.addRouters) // 动态添加可访问路由表
+          //   next({ ...to, replace: true }) // hack 方法 确保 addRoutes 已完成，set the replace: true so the navigation will not leave a history record
+          // })
+          next({ ...to, replace: true })
         }).catch(() => {
           store.dispatch('FedLogOut').then(() => {
             Message.error('获取权限失败，请重新登录！')
