@@ -4,7 +4,7 @@ import Cookies from 'js-cookie'
 import elementEnLocale from 'element-ui/lib/locale/lang/en' // element-ui lang
 import elementZhLocale from 'element-ui/lib/locale/lang/zh-CN'// element-ui lang
 import enLocale from './en'
-import zhLocale from './zh'
+import zhLocale from './zh_CN'
 
 Vue.use(VueI18n)
 
@@ -13,14 +13,14 @@ const messages = {
     ...enLocale,
     ...elementEnLocale
   },
-  zh: {
+  zh_CN: {
     ...zhLocale,
     ...elementZhLocale
   }
 }
 
 const i18n = new VueI18n({
-  locale: Cookies.get('language') || 'zh', // set locale
+  locale: Cookies.get('language') || 'zh_CN', // set locale
   messages // set locale messages
 })
 
