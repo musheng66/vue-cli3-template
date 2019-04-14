@@ -4,6 +4,8 @@ import router from './router'
 import store from './store'
 import './plugins/element-ui/element.js'
 
+import './permission' // 权限
+
 import '@/styles/index.scss' // 全局 css
 
 import '@/assets/icons' // svg-icon
