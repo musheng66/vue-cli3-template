@@ -1,24 +1,28 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
+    <img alt="Vue logo" src="@/assets/logo.png">
     <el-button @click="logout">退出登录</el-button>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-
 export default {
-  name: 'home',
+  name: 'DashboardAdmin',
   components: {
-
+  },
+  data () {
+    return {
+    }
   },
   methods: {
     logout () {
-      this.$store.dispatch('LogOut').then(() => {
+      this.$store.dispatch('user/logOut').then(() => {
         location.reload()
       })
     }
   }
 }
 </script>
+
+<style lang="scss" scoped>
+</style>
