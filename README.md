@@ -141,3 +141,6 @@ Sidebar 作为【侧边栏组件】的一个整体被导出，文件夹的命名
 
 #### *.scss文件命名规范
 * 统一使用kebab-case命名风格
+
+## 代码规范
+vue 代码统一参看[官方风格指南](https://cn.vuejs.org/v2/style-guide/)。
