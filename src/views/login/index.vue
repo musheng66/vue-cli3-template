@@ -7,13 +7,13 @@
       </div>
       <el-form-item prop="username">
         <el-input v-model="loginForm.username" :placeholder="$t('login.usernamePlaceholder')" name="username" type="text" auto-complete="on">
-          <svg-icon slot="prefix" icon-class="user_login" class="el-input__icon"/>
+          <svg-icon slot="prefix" icon-class="user" class="el-input__icon"/>
         </el-input>
       </el-form-item>
 
       <el-form-item prop="password">
         <el-input :type="passwordType" v-model="loginForm.password" :placeholder="$t('login.passwordPlaceholder')" name="password" auto-complete="on" @keyup.enter.native="handleLogin">
-          <svg-icon slot="prefix" icon-class="user_password" class="el-input__icon"/>
+          <svg-icon slot="prefix" icon-class="password" class="el-input__icon"/>
           <i slot="suffix" class="el-icon-view el-input__icon" @click="showPwd()"></i>
         </el-input>
       </el-form-item>
