@@ -62,20 +62,25 @@ export function formatTime (time, option) {
   }
 }
 
-// /**
-//  * @description 获取字节数组长度
-//  * @param {Array} val
-//  * @returns {number}
-//  */
-// export function getByteLen (val) {
-//   let len = 0
-//   for (let i = 0; i < val.length; i++) {
-//     if (val[i].match(/[^\x00-\xff]/ig) != null) {
-//       len += 1
-//     } else { len += 0.5 }
-//   }
-//   return Math.floor(len)
-// }
+/**
+ * @param {string} url
+ * @returns {Object}
+ */
+export function param2Obj (url) {
+  const search = url.split('?')[1]
+  if (!search) {
+    return {}
+  }
+  return JSON.parse(
+    '{"' +
+    decodeURIComponent(search)
+      .replace(/"/g, '\\"')
+      .replace(/&/g, '","')
+      .replace(/=/g, '":"')
+      .replace(/\+/g, ' ') +
+    '"}'
+  )
+}
 
 /**
  * @description 提取 url 或 params 中的请求参数，以 Json 格式返回

@@ -11,10 +11,8 @@ export function loginByUsername (username, password) {
     username: username,
     password: password
   }
-  // 此处判断是由于 mock 会拦截所有请求，而此版本的 mock 存在上传/下载的 bug，下载数据会被转换为字符串，导致下载失败，故此处增加一层判断，直接调用本地方法
-  // 如想使用 mock 且对上传/下载无特殊要求则可免去此判断
   return request({
-    url: '/login/login',
+    url: '/user/login',
     method: 'post',
     data
   })
@@ -26,7 +24,7 @@ export function loginByUsername (username, password) {
  */
 export function logout () {
   return request({
-    url: '/login/logout',
+    url: '/user/logout',
     method: 'post'
   })
 }

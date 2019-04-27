@@ -8,7 +8,7 @@ import store from '@/store'
 
 // 创建 axios 实例
 const service = axios.create({
-  // baseURL: process.env.BASE_URL, // api 的 BASE_API，在 config 文件夹中根据不同环境可配置不同地址
+  baseURL: process.env.VUE_APP_BASE_API, // url = base url + request url
   timeout: 10000, // 请求超时时间
   withCredentials: true
 })
@@ -59,7 +59,7 @@ service.interceptors.response.use(
           })
         }
       })
-      return Promise.reject(new Error('未登录'))
+      // return Promise.reject(new Error('未登录'))
     } else {
       Message({
         message: res.returnMsg,

@@ -19,7 +19,8 @@ export default {
     github: '项目地址',
     screenfull: '全屏',
     theme: '换肤',
-    size: '布局大小'
+    size: '布局大小',
+    blog: '个人博客'
   },
   tagsView: {
     refresh: '刷新',

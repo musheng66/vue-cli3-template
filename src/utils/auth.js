@@ -26,11 +26,17 @@ const NameKey = 'Name'
 
 // token
 export function getToken () {
-  return sessionStorage.getItem(TokenKey)
+  let token = sessionStorage.getItem(TokenKey)
+  try {
+    return JSON.parse(token) !== '' ? JSON.parse(token) : null
+  } catch (e) {
+    console.log('parse token failed')
+    return null
+  }
 }
 
 export function setToken (token) {
-  return sessionStorage.setItem(TokenKey, token)
+  return sessionStorage.setItem(TokenKey, JSON.stringify(token))
 }
 
 export function removeToken () {
@@ -39,11 +45,17 @@ export function removeToken () {
 
 // roles
 export function getRoles () {
-  return sessionStorage.getItem(RoleKey)
+  let roles = sessionStorage.getItem(RoleKey)
+  try {
+    return JSON.parse(roles).length > 0 ? JSON.parse(roles) : []
+  } catch (e) {
+    console.log('parse roles failed')
+    return []
+  }
 }
 
 export function setRoles (roles) {
-  return sessionStorage.setItem(RoleKey, roles)
+  return sessionStorage.setItem(RoleKey, JSON.stringify(roles))
 }
 
 export function removeRoles () {
@@ -52,11 +64,17 @@ export function removeRoles () {
 
 // login time
 export function getLoginTime () {
-  return sessionStorage.getItem(LoginTimeKey)
+  let loginTime = sessionStorage.getItem(LoginTimeKey)
+  try {
+    return JSON.parse(loginTime)
+  } catch (e) {
+    console.log('parse loginTime failed')
+    return ''
+  }
 }
 
 export function setLoginTime (time) {
-  return sessionStorage.setItem(LoginTimeKey, time)
+  return sessionStorage.setItem(LoginTimeKey, JSON.stringify(time))
 }
 
 export function removeLoginTime () {
@@ -65,11 +83,17 @@ export function removeLoginTime () {
 
 // name
 export function getName () {
-  return sessionStorage.getItem(NameKey)
+  let name = sessionStorage.getItem(NameKey)
+  try {
+    return JSON.parse(name)
+  } catch (e) {
+    console.log('parse name failed')
+    return ''
+  }
 }
 
 export function setName (name) {
-  return sessionStorage.setItem(NameKey, name)
+  return sessionStorage.setItem(NameKey, JSON.stringify(name))
 }
 
 export function removeName () {

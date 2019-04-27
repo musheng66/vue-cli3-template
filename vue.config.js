@@ -1,8 +1,10 @@
 const path = require('path')
+const defaultSettings = require('./src/settings.js')
 function resolve (dir) {
   return path.join(__dirname, dir)
 }
-
+const name = defaultSettings.title || 'vue cli Template' // page title
+const port = 8080 // dev port
 module.exports = {
   publicPath: '/',
 
@@ -13,11 +15,40 @@ module.exports = {
 
   // 是否为生产环境构建生成 source map
   productionSourceMap: false,
-
+  devServer: {
+    port: port,
+    open: true,
+    overlay: {
+      warnings: false,
+      errors: true
+    },
+    proxy: {
+      // change xxx-api/login => mock/login
+      // detail: https://cli.vuejs.org/config/#devserver-proxy
+      [process.env.VUE_APP_BASE_API]: {
+        target: `http://localhost:${port}/mock`,
+        changeOrigin: true,
+        pathRewrite: {
+          ['^' + process.env.VUE_APP_BASE_API]: ''
+        }
+      }
+    },
+    after: require('./mock/mock-server.js')
+  },
+  configureWebpack: {
+    // provide the app's title in webpack's name field, so that
+    // it can be accessed in index.html to inject the correct title.
+    name: name,
+    resolve: {
+      alias: {
+        '@': resolve('src')
+      }
+    }
+  },
   // alias 配置
   chainWebpack: config => {
-    config.resolve.alias
-      .set('@', resolve('src'))
+    // config.resolve.alias
+    //   .set('@', resolve('src'))
 
     // 一个规则里的 基础Loader
     // svg是个基础loader
