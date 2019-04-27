@@ -24,8 +24,8 @@ export default {
   },
   data () {
     return {
-      title: 'Vue Element Admin',
-      logo: 'https://wpimg.wallstcn.com/69a1c46c-eb1c-4b46-8bd4-e9e686ef5251.png'
+      title: 'Vue Cli Template',
+      logo: require('@/assets/images/logo.jpg')
     }
   }
 }
@@ -59,6 +59,7 @@ export default {
       height: 32px;
       vertical-align: middle;
       margin-right: 12px;
+      border-radius: 5px;
     }
 
     & .sidebar-title {
