@@ -1,19 +1,17 @@
 <template>
-  <div :class="classObj" class="app-wrapper">
+  <div :class="classObj" class="app-wrapper ms-contain">
     <div v-if="device==='mobile'&&sidebar.opened" class="drawer-bg" @click="handleClickOutside"></div>
-    <sidebar class="sidebar-container"></sidebar>
-    <el-scrollbar class="page-content">
+    <sidebar class="sidebar-container ms-left"></sidebar>
       <div :class="{hasTagsView:needTagsView}" class="main-container">
-        <div :class="{'fixed-header':fixedHeader}">
+        <div :class="{'fixed-header':fixedHeader}" class="ms-header">
           <navbar></navbar>
           <tags-view v-if="needTagsView"></tags-view>
         </div>
-        <app-main></app-main>
+        <app-main class="ms-main"></app-main>
         <right-panel v-if="showSettings">
           <settings></settings>
         </right-panel>
       </div>
-    </el-scrollbar>
   </div>
 </template>
 
@@ -104,12 +102,5 @@ export default {
 
   .mobile .fixed-header {
     width: 100%;
-  }
-</style>
-<style lang="scss">
-  .page-content {
-    .el-scrollbar__view {
-      height: 100%;
-    }
   }
 </style>

@@ -1,6 +1,6 @@
 <template>
   <el-color-picker
-    v-model="theme"
+    v-model="themeColor"
     :predefine="['#409EFF', '#1890ff', '#304156','#212121','#11a983', '#13c2c2', '#6959CD', '#f5222d', ]"
     class="theme-picker"
     popper-class="theme-picker-dropdown"
@@ -15,30 +15,30 @@ export default {
   data () {
     return {
       chalk: '', // content of theme-chalk css
-      theme: ''
+      themeColor: ''
     }
   },
   computed: {
     defaultTheme () {
-      return this.$store.state.settings.theme
+      return this.$store.state.settings.themeColor
     }
   },
   watch: {
     defaultTheme: {
       handler: function (val, oldVal) {
-        this.theme = val
+        this.themeColor = val
       },
       immediate: true
     },
-    async theme (val) {
-      const oldVal = this.chalk ? this.theme : ORIGINAL_THEME
+    async themeColor (val) {
+      const oldVal = this.chalk ? this.themeColor : ORIGINAL_THEME
       if (typeof val !== 'string') return
       const themeCluster = this.getThemeCluster(val.replace('#', ''))
       const originalCluster = this.getThemeCluster(oldVal.replace('#', ''))
       console.log(themeCluster, originalCluster)
 
       const $message = this.$message({
-        message: '  Compiling the theme',
+        message: '主题颜色变更',
         customClass: 'theme-message',
         type: 'success',
         duration: 0,
@@ -157,16 +157,20 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
+@import "../../styles/variables.scss";
+.theme-picker.el-color-picker {
+  padding: calc((#{$navBarHeight} - 40px)/2) 8px !important;
+}
 .theme-message,
 .theme-picker-dropdown {
   z-index: 99999 !important;
 }
 
 .theme-picker .el-color-picker__trigger {
-  height: 26px !important;
-  width: 26px !important;
-  padding: 2px;
+  /*height: 26px !important;*/
+  /*width: 26px !important;*/
+  /*padding: 2px;*/
 }
 
 .theme-picker-dropdown .el-color-dropdown__link-btn {

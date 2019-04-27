@@ -1,6 +1,6 @@
 <template>
-  <div class="home ms-page">
-    <img alt="Vue logo" src="@/assets/logo.png">
+  <div class="home">
+    <h1>欢迎：{{userName}}</h1>
   </div>
 </template>
 
@@ -11,6 +11,13 @@ export default {
   },
   data () {
     return {
+    }
+  },
+  computed: {
+    userName: {
+      get () {
+        return this.$store.state.user.name
+      }
     }
   },
   methods: {
@@ -24,4 +31,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  .home {
+    padding: 20px;
+  }
 </style>

@@ -8,6 +8,10 @@
       <template v-if="device!=='mobile'">
         <search id="header-search" class="right-menu-item" />
 
+        <theme-picker class="right-menu-item hover-effect" @change="themeChange"/>
+
+        <theme-change class="right-menu-item hover-effect" />
+
         <error-log class="errLog-container right-menu-item hover-effect" />
 
         <screenfull id="screenfull" class="right-menu-item hover-effect" />
@@ -57,6 +61,8 @@ import Screenfull from '@/components/Screenfull'
 import SizeSelect from '@/components/SizeSelect'
 import LangSelect from '@/components/LangSelect'
 import Search from '@/components/HeaderSearch'
+import ThemeChange from '@/components/ThemeChange'
+import ThemePicker from '@/components/ThemePicker'
 
 export default {
   components: {
@@ -66,7 +72,9 @@ export default {
     Screenfull,
     SizeSelect,
     LangSelect,
-    Search
+    Search,
+    ThemeChange,
+    ThemePicker
   },
   computed: {
     ...mapGetters([
@@ -82,14 +90,18 @@ export default {
     async logout () {
       await this.$store.dispatch('user/logout')
       this.$router.push(`/login?redirect=${this.$route.fullPath}`)
+    },
+    themeChange (val) {
+      this.$store.dispatch('settings/setThemeColor', val)
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
+@import "../../../styles/variables.scss";
 .navbar {
-  height: 50px;
+  height: $navBarHeight;
   overflow: hidden;
   position: relative;
   background: #fff;

@@ -1,6 +1,8 @@
 @import './variables.scss';
 @import './mixin.scss';
 @import './sidebar.scss';
+//主题
+@import './theme/index.scss';
 
 * {
   margin: 0;
@@ -230,9 +232,10 @@ code {
   z-index: 1000 !important;
 }
 
-/*
-  通用模版项目自定义样式
- */
-.ms-page {
-  padding: 10px;
+.page-content {
+  .el-scrollbar__wrap {
+    background: #fefefe;
+    opacity: .8;
+    border-radius: 5px;
+  }
 }

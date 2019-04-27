@@ -42,18 +42,28 @@ $largePadding: 20px;
 $contentBgColor: #f3f3f3;
 
 // sidebar
+$menuText:#bfcbd9;
+$menuActiveText:#409EFF;
+$subMenuActiveText:#f4f4f5; // https://github.com/ElemeFE/element/issues/12951
+
 $menuBg:#304156;
+$menuHover:#263445;
+
 $subMenuBg:#1f2d3d;
-$menuHover:#001528;
-$sideBarWidth: 220px;
+$subMenuHover:#001528;
+
+$sideBarWidth: 210px;
 $sideBarCollapseWidth: 60px;
 
 // navbar
 $navCommonPadding: $commonPadding;
-$navBarHeight: 55px;
+$navBarHeight: 50px;
 $logoAreaWidth: $sideBarWidth;
 $logoAreaHeight: $navBarHeight - 1px;
 $navBarColor: #eee;
+
+// tags-view
+$tagsViewHeight: 34px;
 
 // css responsive width defined
 $responsive-width-small: 992px;
@@ -71,19 +81,6 @@ $green: #30B08F;
 $tiffany: #4AB7BD;
 $yellow:#FEC171;
 $panGreen: #30B08F;
-
-// sidebar
-$menuText:#bfcbd9;
-$menuActiveText:#409EFF;
-$subMenuActiveText:#f4f4f5; // https://github.com/ElemeFE/element/issues/12951
-
-$menuBg:#304156;
-$menuHover:#263445;
-
-$subMenuBg:#1f2d3d;
-$subMenuHover:#001528;
-
-$sideBarWidth: 210px;
 
 // the :export directive is the magic sauce for webpack
 // https://www.bluematador.com/blog/how-to-share-variables-between-js-and-sass

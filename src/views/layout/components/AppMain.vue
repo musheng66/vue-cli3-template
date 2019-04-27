@@ -1,10 +1,12 @@
 <template>
   <section class="app-main">
-    <transition name="fade-transform" mode="out-in">
-      <keep-alive :include="cachedViews">
-        <router-view :key="key" />
-      </keep-alive>
-    </transition>
+    <el-scrollbar class="page-content">
+      <transition name="fade-transform" mode="out-in">
+        <keep-alive :include="cachedViews">
+          <router-view :key="key" class="ms-view"/>
+        </keep-alive>
+      </transition>
+    </el-scrollbar>
   </section>
 </template>
 
@@ -23,27 +25,34 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "../../../styles/variables";
 .app-main {
-  min-height: 100%;
-  /* 50= navbar  50  */
-  /*min-height: calc(100% - 50px);*/
+  height: calc(100% - #{$navBarHeight});
   width: 100%;
   position: relative;
   overflow: hidden;
+  .page-content {
+    height: 100%;
+    padding: 10px;
+  }
 }
 
 .fixed-header+.app-main {
-  padding-top: 50px;
+  height: 100%;
+  padding-top: $navBarHeight;
+  .page-content {
+    height: 100%;
+  }
 }
 
 .hasTagsView {
   .app-main {
-    /* 84 = navbar + tags-view = 50 + 34 */
-    /*min-height: calc(100% - 84px);*/
+    height: calc(100% - #{$navBarHeight} - #{$tagsViewHeight});
   }
 
   .fixed-header+.app-main {
-    padding-top: 84px;
+    height: 100%;
+    padding-top: calc(#{$navBarHeight} + #{$tagsViewHeight});
   }
 }
 </style>
