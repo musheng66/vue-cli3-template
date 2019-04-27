@@ -1,37 +1,39 @@
 <template>
-  <div class="icons-container">
+  <div class="icons-container ms-page">
     <aside class="warn-content">
       <a href="https://panjiachen.github.io/vue-element-admin-site/guide/advanced/icon.html" target="_blank">Add and use
       </a>
     </aside>
-    <el-tabs type="border-card">
-      <el-tab-pane label="Icons">
-        <div v-for="item of svgIcons" :key="item" @click="handleClipboard(generateIconCode(item),$event)">
-          <el-tooltip placement="top">
-            <div slot="content">
-              {{ generateIconCode(item) }}
-            </div>
-            <div class="icon-item">
-              <svg-icon :icon-class="item" class-name="disabled" />
-              <span>{{ item }}</span>
-            </div>
-          </el-tooltip>
-        </div>
-      </el-tab-pane>
-      <el-tab-pane label="Element-UI Icons">
-        <div v-for="item of elementIcons" :key="item" @click="handleClipboard(generateElementIconCode(item),$event)">
-          <el-tooltip placement="top">
-            <div slot="content">
-              {{ generateElementIconCode(item) }}
-            </div>
-            <div class="icon-item">
-              <i :class="'el-icon-' + item" />
-              <span>{{ item }}</span>
-            </div>
-          </el-tooltip>
-        </div>
-      </el-tab-pane>
-    </el-tabs>
+    <main class="icons">
+      <el-tabs type="border-card">
+        <el-tab-pane label="Icons">
+          <div v-for="item of svgIcons" :key="item" @click="handleClipboard(generateIconCode(item),$event)">
+            <el-tooltip placement="top">
+              <div slot="content">
+                {{ generateIconCode(item) }}
+              </div>
+              <div class="icon-item">
+                <svg-icon :icon-class="item" class-name="disabled" />
+                <span>{{ item }}</span>
+              </div>
+            </el-tooltip>
+          </div>
+        </el-tab-pane>
+        <el-tab-pane label="Element-UI Icons">
+          <div v-for="item of elementIcons" :key="item" @click="handleClipboard(generateElementIconCode(item),$event)">
+            <el-tooltip placement="top">
+              <div slot="content">
+                {{ generateElementIconCode(item) }}
+              </div>
+              <div class="icon-item">
+                <i :class="'el-icon-' + item" />
+                <span>{{ item }}</span>
+              </div>
+            </el-tooltip>
+          </div>
+        </el-tab-pane>
+      </el-tabs>
+    </main>
   </div>
 </template>
 
@@ -64,8 +66,6 @@ export default {
 
 <style lang="scss" scoped>
 .icons-container {
-  margin: 10px 20px 0;
-  overflow: hidden;
 
   .icon-item {
     margin: 20px;
@@ -86,6 +86,10 @@ export default {
 
   .disabled {
     pointer-events: none;
+  }
+
+  .icons {
+    padding: 10px 0 0;
   }
 }
 </style>

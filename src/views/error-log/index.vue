@@ -1,5 +1,5 @@
 <template>
-  <div class="errPage-container">
+  <div class="errPage-container ms-page">
     <ErrorA />
     <ErrorB />
     <!-- $t is vue-i18n global function to translate lang -->
@@ -10,11 +10,11 @@
         {{ $t('errorLog.documentation') }}
       </a>
     </aside>
-    <aside class="warn-content">
+    <main class="err">
       <a href="#" style="display: block;">
         <img style="width: 100%; height: auto;" src="https://wpimg.wallstcn.com/360e4842-4db5-42d0-b078-f9a84a825546.gif">
       </a>
-    </aside>
+    </main>
   </div>
 </template>
 
@@ -28,8 +28,10 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
   .errPage-container {
-    padding: 30px;
+    .err {
+      padding: 10px 0 0;
+    }
   }
 </style>

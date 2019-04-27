@@ -19,7 +19,6 @@ body {
 
   font-family: 'Microsoft YaHei', 'Lantinghei SC', 'Open Sans', 'Hiragino Sans GB', 'WenQuanYi Micro Hei', STHeiti, SimSun, Arial, sans-serif;
   font-size: $standardFontSize;
-  background-color: $main-page-bg;
   color: $main-font-color;
   overflow: hidden;
 }
@@ -62,7 +61,6 @@ html {
 
 #app{
   height: 100%;
-  background-color: $main-page-bg;
   color: $main-font-color;
 }
 
@@ -230,4 +228,11 @@ code {
 
 .multiselect--active {
   z-index: 1000 !important;
+}
+
+/*
+  通用模版项目自定义样式
+ */
+.ms-page {
+  padding: 10px;
 }

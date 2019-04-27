@@ -106,3 +106,10 @@ export default {
     width: 100%;
   }
 </style>
+<style lang="scss">
+  .page-content {
+    .el-scrollbar__view {
+      height: 100%;
+    }
+  }
+</style>

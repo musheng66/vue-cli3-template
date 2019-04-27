@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div class="home ms-page">
     <img alt="Vue logo" src="@/assets/logo.png">
   </div>
 </template>
