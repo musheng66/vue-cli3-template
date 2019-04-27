@@ -33,7 +33,7 @@ router.beforeEach((to, from, next) => {
           next({ ...to, replace: true })
         }).catch(() => {
           debugger
-          store.dispatch('user/fedLogOut').then(() => {
+          store.dispatch('user/fedLogout').then(() => {
             Message.error('获取权限失败，请重新登录！')
             next({ path: '/login' })
           })

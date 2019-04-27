@@ -54,7 +54,7 @@ service.interceptors.response.use(
         type: 'error',
         duration: 500,
         onClose: () => {
-          store.dispatch('user/fedLogOut').then(() => {
+          store.dispatch('user/fedLogout').then(() => {
             location.reload()// 为了重新实例化vue-router对象 避免bug
           })
         }
@@ -81,7 +81,7 @@ service.interceptors.response.use(
         type: 'error',
         duration: 1000,
         onClose: () => {
-          store.dispatch('user/fedLogOut').then(() => {
+          store.dispatch('user/fedLogout').then(() => {
             location.reload() // 为了重新实例化vue-router对象 避免bug
           })
         }

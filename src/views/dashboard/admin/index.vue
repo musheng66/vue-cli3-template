@@ -1,7 +1,6 @@
 <template>
   <div class="home">
     <img alt="Vue logo" src="@/assets/logo.png">
-    <el-button @click="logout">退出登录</el-button>
   </div>
 </template>
 
@@ -16,7 +15,7 @@ export default {
   },
   methods: {
     logout () {
-      this.$store.dispatch('user/logOut').then(() => {
+      this.$store.dispatch('user/logout').then(() => {
         location.reload()
       })
     }

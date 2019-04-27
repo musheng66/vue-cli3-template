@@ -79,7 +79,7 @@ const actions = {
     })
   },
   // 登出
-  logOut ({ commit, state }) {
+  logout ({ commit, state }) {
     // return new Promise((resolve, reject) => {
     //   logout(state.token).then(() => {
     //     commit('SET_TOKEN', '')
@@ -102,7 +102,7 @@ const actions = {
     })
   },
   // 前端 登出
-  fedLogOut ({ commit }) {
+  fedLogout ({ commit }) {
     return new Promise(resolve => {
       commit('SET_TOKEN', '')
       removeToken()
