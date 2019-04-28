@@ -14,6 +14,15 @@ $defaultActiveColor: #fff;
 .ms-page {
   padding: 10px;
 }
+.ms-view {
+  background: #fff;
+  border-radius: 3px;
+  opacity: .92;
+  padding: 5px;
+}
+.el-scrollbar__wrap {
+  overflow-x: hidden;
+}
 
 .ms-contain {
   background-color: #f2f2f2;

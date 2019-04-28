@@ -1,5 +1,5 @@
 <template>
-  <div class="icons-container ms-page">
+  <div class="icons-container">
     <aside class="warn-content">
       <a href="https://panjiachen.github.io/vue-element-admin-site/guide/advanced/icon.html" target="_blank">Add and use
       </a>

@@ -1,11 +1,13 @@
 <template>
   <section class="app-main">
     <el-scrollbar class="page-content">
-      <transition name="fade-transform" mode="out-in">
-        <keep-alive :include="cachedViews">
-          <router-view :key="key" class="ms-view"/>
-        </keep-alive>
-      </transition>
+      <div class="ms-page">
+        <transition name="fade-transform" mode="out-in">
+          <keep-alive :include="cachedViews">
+            <router-view :key="key" class="ms-view"/>
+          </keep-alive>
+        </transition>
+      </div>
     </el-scrollbar>
   </section>
 </template>
@@ -33,7 +35,6 @@ export default {
   overflow: hidden;
   .page-content {
     height: 100%;
-    padding: 10px;
   }
 }
 
