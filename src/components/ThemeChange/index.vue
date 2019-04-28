@@ -30,7 +30,7 @@ export default {
           name: '默认主题',
           value: ''
         }, {
-          name: '炫彩主题',
+          name: '星空主题',
           value: 'theme-star'
         }, {
           name: '暗色主题',
@@ -88,7 +88,7 @@ export default {
     }
     .top-theme-item:nth-of-type(2) {
       .theme-preview {
-        background-image: url("/img/bg/star-squashed.jpg");
+        background-image: url("/img/bg/stars.jpg");
         background-size: 100% 100%;
       }
     }
