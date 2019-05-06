@@ -1,31 +1,30 @@
 <template>
   <div class="dashboard-container">
-    <component :is="currentRole" />
+    <div class="home">
+      <h1>欢迎：{{ userName }}</h1>
+    </div>
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
-import adminDashboard from './admin'
-import editorDashboard from './editor'
-
 export default {
   name: 'Dashboard',
-  components: { adminDashboard, editorDashboard },
+  components: { },
   data () {
-    return {
-      currentRole: 'adminDashboard'
-    }
+    return { }
   },
   computed: {
-    ...mapGetters([
-      'roles'
-    ])
-  },
-  created () {
-    if (!this.roles.includes('admin')) {
-      this.currentRole = 'editorDashboard'
+    userName: {
+      get () {
+        return this.$store.state.user.name
+      }
     }
   }
 }
 </script>
+
+<style lang="scss" scoped>
+  .home {
+    padding: 20px;
+  }
+</style>
