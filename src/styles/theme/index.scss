@@ -19,6 +19,12 @@ $defaultActiveColor: #fff;
   border-radius: 3px;
   opacity: .92;
   padding: 5px;
+  min-height: calc(100vh - #{$navBarHeight} - 20px);
+}
+.hasTagsView {
+  .ms-view {
+    min-height: calc(100vh - #{$navBarHeight} - #{$tagsViewHeight} - 20px);
+  }
 }
 .el-scrollbar__wrap {
   overflow-x: hidden;
