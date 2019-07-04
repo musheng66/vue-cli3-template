@@ -4,7 +4,7 @@ function resolve (dir) {
   return path.join(__dirname, dir)
 }
 const name = defaultSettings.title || 'vue cli Template' // page title
-const port = 8080 // dev port
+const port = process.env.port || process.env.npm_config_port || 8066 // dev port
 module.exports = {
   publicPath: '/',
 
@@ -25,6 +25,7 @@ module.exports = {
     proxy: {
       // change xxx-api/login => mock/login
       // detail: https://cli.vuejs.org/config/#devserver-proxy
+      // mock 模拟代理配置，此处指定的 port 若被占用则会报错
       [process.env.VUE_APP_BASE_API]: {
         target: `http://localhost:${port}/mock`,
         changeOrigin: true,
