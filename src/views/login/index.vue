@@ -1,6 +1,8 @@
 <template>
   <div class="login-container">
+    <ms-starry></ms-starry>
     <div class="take-place"> </div>
+    <ms-scroll-tech widthM="600px" heightM="600px" srcM="/img/source/source119.svg" :zIndexM="-1"></ms-scroll-tech>
     <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" auto-complete="on" label-position="left">
       <div class="title-container">
         <h3 class="title">{{ $t('login.title') }}</h3>
@@ -10,27 +12,28 @@
           <svg-icon slot="prefix" icon-class="user" class="el-input__icon"/>
         </el-input>
       </el-form-item>
-
       <el-form-item prop="password">
         <el-input :type="passwordType" v-model="loginForm.password" :placeholder="$t('login.passwordPlaceholder')" name="password" auto-complete="on" @keyup.enter.native="handleLogin">
           <svg-icon slot="prefix" icon-class="password" class="el-input__icon"/>
           <i slot="suffix" class="el-icon-view el-input__icon" @click="showPwd()"></i>
         </el-input>
       </el-form-item>
-
       <el-button :loading="loading" type="primary" class="login-btn" @click.native.prevent="handleLogin">{{ $t('login.logIn') }}</el-button>
-
     </el-form>
     <div class="footer-info">
       <p>{{ $t('siteInfo.copyright') }}</p>
     </div>
   </div>
 </template>
-
 <script>
+import MsStarry from '@/components/Starry/index.vue'
+import MsScrollTech from '@/components/ScrollTech/index.vue'
 export default {
   name: 'Login',
-  components: {},
+  components: {
+    MsStarry,
+    MsScrollTech
+  },
   data () {
     const validatePassword = (rule, value, callback) => {
       if (value.length < 6) {
@@ -39,7 +42,6 @@ export default {
         callback()
       }
     }
-
     return {
       loginForm: {
         username: 'admin',
@@ -59,10 +61,8 @@ export default {
     }
   },
   created () {
-
   },
   destroyed () {
-
   },
   methods: {
     showPwd () {
@@ -91,7 +91,6 @@ export default {
   }
 }
 </script>
-
 <style rel="stylesheet/scss" lang="scss">
   /* reset element-ui css */
   .login-container {
@@ -151,17 +150,18 @@ export default {
       width: 100%;
       height: 100%;
       z-index: -1;
-      background: url("../../assets/images/mainbg.jpg") center no-repeat;
+      /*background: url("../../assets/images/mainbg.jpg") center no-repeat;*/
       background-size: cover;
       @include filter-blur(5px);
     }
     .login-form {
-      width: 420px;
+      width: 360px;
       padding: 30px;
       margin: 0 auto;
-      background-color: rgba(255, 255, 255, 0.5);
-      border-radius: 10px;
-      box-shadow: 1px 1px 5px #777;
+      /*background-color: rgba(255, 255, 255, 0.5);*/
+      /*background-color: rgba(23, 36, 64, 0.6);*/
+      /*border-radius: 10px;*/
+      /*box-shadow: 1px 1px 5px #777;*/
       .svg-container {
         padding: 6px 5px 6px 15px;
         color: $dark_gray;
@@ -177,7 +177,7 @@ export default {
         .title {
           margin: 15px auto 30px auto;
           text-align: center;
-          color: #333;
+          color: $light_gray;
         }
       }
       .show-pwd {
@@ -196,7 +196,7 @@ export default {
       }
     }
     .footer-info {
-      color: $light_gray;
+      color: $dark_gray;
       text-align: center;
       padding: 10px;
     }

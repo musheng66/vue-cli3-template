@@ -1,75 +1,94 @@
 @mixin clearfix {
-    &:after {
-        content: "";
-        display: table;
-        clear: both;
-    }
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
 }
 
 @mixin scrollBar {
-     ::-webkit-scrollbar-track-piece {
-        background-color: transparent;
-    }
-     ::-webkit-scrollbar {
-        width: 7px;
-        height: 7px;
-        background-color: transparent;
-    }
-     ::-webkit-scrollbar-thumb {
-        border-radius: 5px;
-        background-color: hsla(220, 4%, 58%, .3);
-    }
+  /* 滚动条整体部分 */
+  ::-webkit-scrollbar {
+    width: 7px;
+    height: 7px;
+    background-color: transparent;
+  }
+  /* 滚动条里面的小方块，能向上向下移动（或往左往右移动，取决于是垂直滚动条还是水平滚动条） */
+  ::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background-color: hsla(220, 4%, 58%, .3);
+  }
+  /* 滚动条的轨道（里面装有Thumb） */
+  ::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+  /* 滚动条的轨道的两端按钮，允许通过点击微调小方块的位置 */
+  ::-webkit-scrollbar-button {
+    background-color: transparent;
+  }
+  /* 内层轨道，滚动条中间部分（除去） */
+  ::-webkit-scrollbar-track-piece {
+    background-color: transparent;
+  }
+  /* 边角，即两个滚动条的交汇处 */
+  ::-webkit-scrollbar-corner {
+    background-color: transparent;
+  }
+  /* 两个滚动条的交汇处上用于通过拖动调整元素大小的小控件 */
+  ::-webkit-resizer {
+    background-color: transparent;
+  }
 }
 
 @mixin radius($width, $size, $color) {
-    width: $width;
-    height: $width;
-    line-height: $width;
-    border-radius: $width;
-    text-align: center;
-    border-width: $size;
-    border-style: solid;
-    border-color: $color;
+  width: $width;
+  height: $width;
+  line-height: $width;
+  border-radius: $width;
+  text-align: center;
+  border-width: $size;
+  border-style: solid;
+  border-color: $color;
 }
 
 @mixin relative {
-    position: relative;
-    width: 100%;
-    height: 100%;
+  position: relative;
+  width: 100%;
+  height: 100%;
 }
 
 @mixin pct($pct) {
-    width: #{$pct};
-    position: relative;
-    margin: 0 auto;
+  width: #{$pct};
+  position: relative;
+  margin: 0 auto;
 }
 
 @mixin triangle($width, $height, $color, $direction) {
-    $width: $width/2;
-    $color-border-style: $height solid $color;
-    $transparent-border-style: $width solid transparent;
-    height: 0;
-    width: 0;
-    @if $direction==up {
-        border-bottom: $color-border-style;
-        border-left: $transparent-border-style;
-        border-right: $transparent-border-style;
-    }
-    @else if $direction==right {
-        border-left: $color-border-style;
-        border-top: $transparent-border-style;
-        border-bottom: $transparent-border-style;
-    }
-    @else if $direction==down {
-        border-top: $color-border-style;
-        border-left: $transparent-border-style;
-        border-right: $transparent-border-style;
-    }
-    @else if $direction==left {
-        border-right: $color-border-style;
-        border-top: $transparent-border-style;
-        border-bottom: $transparent-border-style;
-    }
+  $width: $width/2;
+  $color-border-style: $height solid $color;
+  $transparent-border-style: $width solid transparent;
+  height: 0;
+  width: 0;
+  @if $direction==up {
+    border-bottom: $color-border-style;
+    border-left: $transparent-border-style;
+    border-right: $transparent-border-style;
+  }
+  @else if $direction==right {
+    border-left: $color-border-style;
+    border-top: $transparent-border-style;
+    border-bottom: $transparent-border-style;
+  }
+  @else if $direction==down {
+    border-top: $color-border-style;
+    border-left: $transparent-border-style;
+    border-right: $transparent-border-style;
+  }
+  @else if $direction==left {
+    border-right: $color-border-style;
+    border-top: $transparent-border-style;
+    border-bottom: $transparent-border-style;
+  }
 }
 
 /* 自定义mixin，主要为精简页面CSS语句及解决兼容性问题

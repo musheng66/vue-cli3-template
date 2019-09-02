@@ -4,6 +4,8 @@
 //主题
 @import './theme/index.scss';
 
+@include scrollBar();
+
 * {
   margin: 0;
 }
