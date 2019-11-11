@@ -42,7 +42,7 @@
   .logo,
   .el-menu-item,
   .el-submenu__title,
-  .el-menu {
+  .el-menu:not(.el-menu--popup) {
     background-color: transparent !important
   }
   .logo_subtitle {
