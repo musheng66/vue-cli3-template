@@ -10,9 +10,6 @@
       <el-dropdown-item :disabled="language==='en'" command="en">
         English
       </el-dropdown-item>
-      <el-dropdown-item :disabled="language==='es'" command="es">
-        Español
-      </el-dropdown-item>
     </el-dropdown-menu>
   </el-dropdown>
 </template>
@@ -29,7 +26,7 @@ export default {
       this.$i18n.locale = lang
       this.$store.dispatch('app/setLanguage', lang)
       this.$message({
-        message: 'Switch Language Success',
+        message: this.$t('settings.langSwitchedTo'),
         type: 'success'
       })
     }

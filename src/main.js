@@ -11,6 +11,8 @@ import '@/styles/index.scss' // 全局 css
 import '@/assets/icons' // svg-icon
 import i18n from './locales/i18n'
 
+// import './errorLog' // error log
+
 /**
  * If you don't want to use mock-server
  * you want to use mockjs for request interception

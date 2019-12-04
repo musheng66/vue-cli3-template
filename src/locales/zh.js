@@ -8,10 +8,11 @@ export default {
     page401: '401',
     page404: '404',
     errorLog: '错误日志'
-
   },
   siteInfo: {
-    copyright: '沐圣 @ 2019年 4月'
+    title: '前端项目模板',
+    copyright: '沐圣 | @ 2019',
+    welcome: '欢迎'
   },
   navbar: {
     logout: '退出登录',
@@ -34,7 +35,7 @@ export default {
     documentation: '文档介绍'
   },
   login: {
-    title: 'Vue-Cli·Admin',
+    title: '前端项目模板',
     logIn: '登 录',
     usernamePlaceholder: '请输入用户名',
     passwordPlaceholder: '请输入密码'
@@ -44,6 +45,7 @@ export default {
     theme: '主题色',
     tagsView: '开启 Tags-View',
     fixedHeader: '固定 Header',
-    sidebarLogo: '侧边栏 Logo'
+    sidebarLogo: '侧边栏 Logo',
+    langSwitchedTo: '已切换至中文'
   }
 }

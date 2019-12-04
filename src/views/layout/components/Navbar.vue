@@ -8,10 +8,6 @@
       <template v-if="device!=='mobile'">
         <search id="header-search" class="right-menu-item" />
 
-        <theme-picker class="right-menu-item hover-effect" @change="themeChange"/>
-
-        <theme-change class="right-menu-item hover-effect" />
-
         <error-log class="errLog-container right-menu-item hover-effect" />
 
         <screenfull id="screenfull" class="right-menu-item hover-effect" />
@@ -21,6 +17,10 @@
         </el-tooltip>
 
         <lang-select class="right-menu-item hover-effect" />
+
+        <theme-change class="right-menu-item hover-effect" />
+
+        <theme-picker class="right-menu-item hover-effect" @change="themeChange"/>
 
       </template>
 

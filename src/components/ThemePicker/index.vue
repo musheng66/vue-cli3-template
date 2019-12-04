@@ -160,7 +160,7 @@ export default {
 <style lang="scss">
 @import "../../styles/variables.scss";
 .theme-picker.el-color-picker {
-  padding: calc((#{$navBarHeight} - 40px)/2) 8px !important;
+  padding: calc((#{$navBarHeight} - 36px)/2) 8px !important;
 }
 .theme-message,
 .theme-picker-dropdown {
