@@ -20,10 +20,11 @@ export default {
   },
   data () {
     return {
-
+      requestAnimationFrameId: null
     }
   },
   mounted () {
+    const _this = this
     // let canvas = document.getElementById('canvas')
     let canvas = this.$refs.canvas
     let ctx = canvas.getContext('2d')
@@ -122,10 +123,13 @@ export default {
         stars[i].draw()
       }
 
-      window.requestAnimationFrame(animation)
+      _this.requestAnimationFrameId = window.requestAnimationFrame(animation)
     }
 
     animation()
+  },
+  beforeDestroy () {
+    if (this.requestAnimationFrameId) window.cancelAnimationFrame(this.requestAnimationFrameId)
   }
 }
 </script>
