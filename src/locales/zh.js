@@ -11,7 +11,7 @@ export default {
   },
   siteInfo: {
     title: '前端项目模板',
-    copyright: '沐圣 | @ 2019',
+    copyright: '沐圣 | 2020',
     welcome: '欢迎'
   },
   navbar: {

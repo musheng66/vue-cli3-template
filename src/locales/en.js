@@ -10,7 +10,7 @@ export default {
   },
   siteInfo: {
     title: 'Vue-Cli template',
-    copyright: 'Mu Sheng | © 2019',
+    copyright: 'Mu Sheng | 2020',
     welcome: 'Welcome'
   },
   navbar: {
