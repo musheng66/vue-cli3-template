@@ -1,7 +1,5 @@
 import axios from 'axios'
 import { Message } from 'element-ui'
-import { serialize } from '@/utils'
-import { getToken } from '@/utils/auth'
 import NProgress from 'nprogress' // progress bar
 import 'nprogress/nprogress.css' // progress bar style
 import store from '@/store'
@@ -19,14 +17,36 @@ NProgress.configure({
 // 请求拦截器
 service.interceptors.request.use(config => {
   NProgress.start() // start progress bar
-  const isToken = (config.data || {}).isToken === false
-  if (getToken() && !isToken) {
-    config.headers['Authorization'] = 'Bearer ' + getToken() // 让每个请求携带token--['Authorization']为自定义key 请根据实际情况自行修改
+  if (config.method === 'post') {
+    // 在body中设置data，将json转化为字符串类型
+    config.data = config.data || config.params
+    delete config.params
   }
-  // headers中配置serialize为true开启序列化
-  if (config.methods === 'post' && config.headers.serialize) {
-    config.data = serialize(config.data)
-    delete config.data.serialize
+  switch (config.paramType) {
+    case 'raw':
+      config.data = config.data || config.params
+      break
+    case 'form':
+      let dataEncode = ''
+      config.data = config.data || config.params
+      for (let item in config.data) {
+        dataEncode += encodeURIComponent(item) + '=' + encodeURIComponent(config.data[item]) + '&'
+      }
+      config.data = dataEncode
+      config.headers['Content-Type'] = 'application/x-www-form-urlencoded'
+      break
+    default:
+      break
+  }
+  switch (config.authType) {
+    case 'basic':
+      config.headers['Authorization'] = 'Basic ' + config.authData
+      break
+    case 'oauth2':
+      config.headers['Authorization'] = 'Bearer ' + config.authData
+      break
+    default:
+      break
   }
   return config
 }, error => {
