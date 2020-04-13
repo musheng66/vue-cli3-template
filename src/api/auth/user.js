@@ -1,5 +1,7 @@
-import request from '@/api/request'
-
+// import request from '@/api/request'
+/**
+ * 此处暂时给定登录用户为admin，使用apim中的接口处理登录
+ */
 /**
  * @Description 根据用户名和密码登录
  * @Param {String} username 用户名
@@ -7,15 +9,16 @@ import request from '@/api/request'
  * @return {*} 接口数据
  */
 export function loginByUsername (username, password) {
-  const data = {
-    username: username,
-    password: password
-  }
-  return request({
-    url: '/user/login',
-    method: 'post',
-    data
-  })
+  // const data = {
+  //   username: username,
+  //   password: password
+  // }
+  // return request({
+  //   url: '/user/login',
+  //   method: 'post',
+  //   data
+  // })
+  return Promise.resolve({ token: 'admin-token' })
 }
 
 /**
@@ -23,10 +26,11 @@ export function loginByUsername (username, password) {
  * @return {*} 接口数据
  */
 export function logout () {
-  return request({
-    url: '/user/logout',
-    method: 'post'
-  })
+  // return request({
+  //   url: '/user/logout',
+  //   method: 'post'
+  // })
+  return Promise.resolve('success')
 }
 
 /**
@@ -35,9 +39,15 @@ export function logout () {
  * @return {*} 接口数据
  */
 export function getUserInfo (token) {
-  return request({
-    url: '/user/info',
-    method: 'get',
-    params: { token }
+  // return request({
+  //   url: '/user/info',
+  //   method: 'get',
+  //   params: { token }
+  // })
+  return Promise.resolve({
+    roles: ['admin'],
+    introduction: 'I am a super administrator',
+    avatar: '/img/logo.jpg',
+    name: 'Super Admin'
   })
 }
