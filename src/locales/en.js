@@ -6,7 +6,11 @@ export default {
     page401: '401',
     page404: '404',
     errorLog: 'Error Log',
-    components: 'components'
+    components: {
+      index: 'Components',
+      icons: 'Icons',
+      tableDemo: 'Table Demo'
+    }
   },
   siteInfo: {
     title: 'Vue-Cli template',

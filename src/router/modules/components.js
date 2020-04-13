@@ -9,7 +9,7 @@ const componentsRouter = {
   alwaysShow: true,
   name: 'ComponentDemo',
   meta: {
-    title: 'components',
+    title: 'components.index',
     icon: 'component'
   },
   children: [
@@ -17,7 +17,13 @@ const componentsRouter = {
       path: 'svg-icons',
       component: () => import('@/views/icons'),
       name: 'SvgIconsDemo',
-      meta: { title: 'icons', icon: 'icon', noCache: true }
+      meta: { title: 'components.icons', icon: 'icon', noCache: true }
+    },
+    {
+      path: 'table-demo',
+      component: () => import('@/views/table-demo'),
+      name: 'TableDemo',
+      meta: { title: 'components.tableDemo', icon: 'table', noCache: true }
     }
   ]
 }

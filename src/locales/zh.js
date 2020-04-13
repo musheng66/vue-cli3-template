@@ -1,13 +1,17 @@
 export default {
   route: {
     dashboard: '首页',
-    components: '组件',
     permission: '权限测试页',
     icons: '图标',
     errorPages: '错误页面',
     page401: '401',
     page404: '404',
-    errorLog: '错误日志'
+    errorLog: '错误日志',
+    components: {
+      index: '组件',
+      icons: '图标',
+      tableDemo: '表格样例'
+    }
   },
   siteInfo: {
     title: '前端项目模板',

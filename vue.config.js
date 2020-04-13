@@ -22,18 +22,25 @@ module.exports = {
       warnings: false,
       errors: true
     },
-    proxy: {
-      // change xxx-api/login => mock/login
-      // detail: https://cli.vuejs.org/config/#devserver-proxy
-      // mock 模拟代理配置，此处指定的 port 若被占用则会报错
-      // [process.env.VUE_APP_BASE_API]: {
-      //   target: `http://localhost:${port}/mock`,
-      //   changeOrigin: true,
-      //   pathRewrite: {
-      //     ['^' + process.env.VUE_APP_BASE_API]: ''
-      //   }
-      // }
-    },
+    // proxy: {
+    //   // change xxx-api/login => mock/login
+    //   // detail: https://cli.vuejs.org/config/#devserver-proxy
+    //   // mock 模拟代理配置，此处指定的 port 若被占用则会报错
+    //   [process.env.VUE_APP_BASE_API]: {
+    //     target: `http://localhost:${port}/mock`,
+    //     changeOrigin: true,
+    //     pathRewrite: {
+    //       ['^' + process.env.VUE_APP_BASE_API]: ''
+    //     }
+    //   },
+    //   '/test': {
+    //     target: `http://localhost:8080`,
+    //     changeOrigin: true,
+    //     pathRewrite: {
+    //       '^/test': 'test'
+    //     }
+    //   }
+    // },
     // after: require('./mock/mock-server.js')
   },
   configureWebpack: {
