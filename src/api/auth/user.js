@@ -1,6 +1,19 @@
 // import request from '@/api/request'
 /**
- * 此处暂时给定登录用户为admin
+ * 登录方法样例，以 Basic 基本认证方式为例：
+ * export function login (username, password) {
+    // Base64 加密（需安装js-base64依赖）
+    const authData = Base64.encode(username + ':' + password)
+    return request({
+      url: '/user/login',
+      method: 'get',
+      headers: {
+        'Authorization': 'Basic ' + authData,
+        'Content-Type': 'plain/text'
+        'X-Requested-By': 'custom content'
+      }
+    })
+  }
  */
 /**
  * @description 根据用户名和密码登录

@@ -3,6 +3,7 @@ import { Message } from 'element-ui'
 import NProgress from 'nprogress' // progress bar
 import 'nprogress/nprogress.css' // progress bar style
 import store from '@/store'
+import router from '@/router'
 
 // 创建 axios 实例
 const service = axios.create({
@@ -34,16 +35,6 @@ service.interceptors.request.use(config => {
       }
       config.data = dataEncode
       config.headers['Content-Type'] = 'application/x-www-form-urlencoded'
-      break
-    default:
-      break
-  }
-  switch (config.authType) {
-    case 'basic':
-      config.headers['Authorization'] = 'Basic ' + config.authData
-      break
-    case 'oauth2':
-      config.headers['Authorization'] = 'Bearer ' + config.authData
       break
     default:
       break
@@ -94,15 +85,15 @@ service.interceptors.response.use(
     // 失败
     // console.log('Request Error From: ' + error.config.url);
     // console.error(error); // for debug
-    let res = error.response.data
-    if (String(res.code) === '401') {
+    // error.response.status 为后台返回给浏览器的状态码
+    if (error.response.status === 403) {
       Message({
         message: '身份认证已失效，请重新登录',
         type: 'error',
         duration: 1000,
         onClose: () => {
           store.dispatch('user/fedLogout').then(() => {
-            location.reload() // 为了重新实例化vue-router对象 避免bug
+            router.push({ path: '/login' })
           })
         }
       })
