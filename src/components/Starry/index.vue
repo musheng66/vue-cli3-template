@@ -1,21 +1,29 @@
 <template>
-  <canvas id="canvas" class="canvas" ref="canvas"></canvas>
+  <canvas id="canvas" class="canvas" ref="canvas" :class="position === 'fixed' ? 'fixed' : ''"></canvas>
 </template>
 <script>
 export default {
-  name: 'canvasH5',
+  name: 'Starry',
   props: {
-    widthM: {
+    width: {
       type: Number,
       default: window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth
     },
-    heightM: {
+    height: {
       type: Number,
       default: window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight
     },
     zIndex: {
       type: Number,
       default: -1
+    },
+    stars: {
+      type: Number,
+      default: 1000
+    },
+    position: {
+      type: String,
+      default: 'fixed'
     }
   },
   data () {
@@ -30,14 +38,14 @@ export default {
     let ctx = canvas.getContext('2d')
     // let w = canvas.width = this.widthM
     // let h = canvas.height = this.heightM
-    let w = canvas.width = this.widthM
-    let h = canvas.height = this.heightM
+    let w = canvas.width = this.width
+    let h = canvas.height = this.height
     canvas.style.zIndex = this.zIndex
 
     let hue = 217
     let stars = []
     let count = 0
-    let maxStars = 3000
+    let maxStars = this.stars
 
     let canvas2 = document.createElement('canvas')
     let ctx2 = canvas2.getContext('2d')
@@ -134,7 +142,10 @@ export default {
 }
 </script>
 <style rel="stylesheet/scss" lang="scss" scoped>
-  .canvas{
+  .canvas {
+    position: relative;
+  }
+  .canvas.fixed {
     position: fixed;
     top:0;
     left: 0;
